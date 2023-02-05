@@ -6,19 +6,24 @@ export function Slider() {
   const slides = [
     {
       url: "/img/ellie.jpg",
+      title: "Information",
+      description: "Stay informed of your favorite games",
     },
     {
       url: "/img/hellblade_wallpaper.jpg",
+      title: "Ease",
+      description: "Find your favorite games easily",
     },
     {
       url: "/img/war_wallpaper.jpg",
+      title: "By gamers for gamers",
+      description: "We share the same hobby as you",
     },
 
     {
       url: "/img/illidan.jpg",
-    },
-    {
-      url: "/img/fondo.webp",
+      title: "Feedback",
+      description: "Do you know how we can improve? Contact us!",
     },
   ];
 
@@ -41,13 +46,18 @@ export function Slider() {
   };
 
   return (
-    <div>
-      <div className="max-w-[800px] h-[580px] w-full m-auto py-16 px-4 relative group">
+    <div className="bg-neutral-900">
+      <div className="max-w-[1200px] h-[680px] w-full m-auto py-16 px-4 relative group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
           className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
         >
-          <div className="relative group  bg-slate-800">aasd</div>
+        <div className="flex h-full items-end justify-center bg-trasparent text-center">
+          <div className="w-full h-1/5 bg-black bg-opacity-30 text-white inset-x-0 bottom-0 select-none pt-3 rounded-b-2xl">
+            <h2 className="font-bold text-2xl">{slides[currentIndex].title}</h2>
+            <h3 className="text-xl mt-3">{slides[currentIndex].description}</h3>
+          </div>
+        </div>
           
         </div>
         {/* Left Arrow */}
@@ -65,7 +75,7 @@ export function Slider() {
               onClick={() => goToSlide(slideIndex)}
               className="text-2xl cursor-pointer"
             >
-              <RxDotFilled />
+              <RxDotFilled className= {currentIndex == slideIndex ? "text-slate-400" : "text-white"} />
             </div>
           ))}
         </div>

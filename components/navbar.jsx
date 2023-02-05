@@ -14,14 +14,13 @@ export function Navbar({ title, description }) {
   </Head>
   
   
-      <nav className="w-full bg-gray-700 top-0 left-0 right-0 z-10">
+      <nav className="w-full bg-neutral-900 top-0 left-0 right-0 z-10">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
-          <div>
+          <div className="w-1/3">
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               {/* LOGO */}
-              <Link href="/">
-                <h2 className="text-2xl text-cyan-600 font-bold ">LOGO</h2>
-              </Link>
+              <Image className="rounded-lg" src="/img/hutt.png" width={50} height={50} alt="Logo">
+              </Image>
               {/* HAMBURGER BUTTON FOR MOBILE */}
               <div className="md:hidden">
                 <button
@@ -43,29 +42,29 @@ export function Navbar({ title, description }) {
               </div>
             </div>
           </div>
-          <div>
+          <div className="w-2/3">
             <div
               className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
                 navbar ? 'p-12 md:p-0 block' : 'hidden'
               }`}
             >
-              <ul className="h-screen md:h-auto items-center justify-center md:flex ">
-                  <Link className="md:hover:border-b-4" href="#about" onClick={() => setNavbar(!navbar)}>
-                <li className="text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0  hover:bg-purple-900  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+              <ul className="h-screen md:h-auto items-center justify-start md:flex">
+                  <Link href="#about" onClick={() => setNavbar(!navbar)}>
+                <li className="text-lg text-white py-2 md:pr-10 text-center md:hover:text-purple-600 md:hover:bg-transparent">
                     About
                 </li>
                   </Link>
-                <li className="text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                <li className="text-lg text-white py-2 md:px-10 text-center  md:hover:text-purple-600 md:hover:bg-transparent">
                   <Link href="#blog" onClick={() => setNavbar(!navbar)}>
                     Blogs
                   </Link>
                 </li>
-                <li className="text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                <li className="text-lg text-white py-2 md:px-10 text-center  md:hover:text-purple-600 md:hover:bg-transparent">
                   <Link href="#contact" onClick={() => setNavbar(!navbar)}>
                     Contact
                   </Link>
                 </li>
-                <li className="text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0  hover:bg-purple-600  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent">
+                <li className="text-lg text-white py-2 md:px-10 text-center   md:hover:text-purple-600 md:hover:bg-transparent">
                   <Link href="#projects" onClick={() => setNavbar(!navbar)}>
                     Projects
                   </Link>

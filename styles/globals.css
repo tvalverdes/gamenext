@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
 
-.fondo {
-  background-image: url('/img/hellblade wallpaper.jpg');
+html{
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
