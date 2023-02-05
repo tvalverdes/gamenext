@@ -6,7 +6,7 @@
 html{
   font-family: 'Ubuntu', sans-serif;
 }
-
+/*
 h1 {
   color: white;
   text-shadow:
@@ -15,9 +15,22 @@ h1 {
     -1px 1px 0 #374151,
      1px 1px 0 #374151;
 }
+*/
 
 .button:hover {
   background-color: #374151;
   transition: background-color 0.2s linear
 }
+
+.socials:hover {
+  animation: pop 0.3s linear;
+}
+
+@keyframes pop{
+  50% {
+    transform: scale(1.2);
+    color:#453DC5;
+  }
+}
+
 
