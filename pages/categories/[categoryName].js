@@ -16,6 +16,9 @@ export default function CategoryName( {games} ) {
 
 export async function getServerSideProps (context){
 
+  {console.log("BASE_URL: "+process.env.BASE_URL)}
+  {console.log("API_KEY: "+process.env.API_KEY)}
+  {console.log("API_HOST "+process.env.API_HOST)}
   const categoryName = context.query.categoryName;
   try {
     const headers = {
