@@ -5,23 +5,23 @@ import { RxDotFilled } from "react-icons/rx";
 export function Slider() {
   const slides = [
     {
-      url: "/img/ellie.jpg",
+      url: "/img/ellie.webp",
       title: "Information",
       description: "Stay informed of your favorite games",
     },
     {
-      url: "/img/hellblade_wallpaper.jpg",
+      url: "/img/hellblade.webp",
       title: "Ease",
       description: "Find your favorite games easily",
     },
     {
-      url: "/img/war_wallpaper.jpg",
+      url: "/img/war-wallpaper.webp",
       title: "By gamers for gamers",
       description: "We share the same hobby as you",
     },
 
     {
-      url: "/img/illidan.jpg",
+      url: "/img/iceman.webp",
       title: "Feedback",
       description: "Do you know how we can improve? Contact us!",
     },
