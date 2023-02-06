@@ -20,14 +20,14 @@ export default function Home() {
       <div className='w-full flex items-center justify-center'>
         <div className='w-3/4'>
       <div className='w-full grid justify-items-center grid-cols-1 gap-5 md:gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-      <CategoryCard url="shooter.webp" alt="Shooter Category" category="SHOOTER"/>
-      <CategoryCard url="strategy.webp" alt="Strategy Category" category="STRATEGY"/>
-      <CategoryCard url="moba.webp" alt="MOBA Category" category="MOBA"/>
-      <CategoryCard url="open-world.webp" alt="Open World Category" category="OPEN-WORLD"/>
+      <CategoryCard url="shooter.webp" alt="Shooter Category" category="SHOOTER" sendTo="/categories/shooter"/>
+      <CategoryCard url="strategy.webp" alt="Strategy Category" category="STRATEGY" sendTo="/categories/strategy"/>
+      <CategoryCard url="moba.webp" alt="MOBA Category" category="MOBA" sendTo="/categories/moba"/>
+      <CategoryCard url="open-world.webp" alt="Open World Category" category="OPEN-WORLD" sendTo="/categories/open-world"/>
       </div>
       </div>
       </div>
-      <Button text="Show all" />
+      <Button text="Show all" link="/categories" />
       <Footer />
       
       

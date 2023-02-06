@@ -1,11 +1,37 @@
 import { useRouter } from 'next/router'
+import axios from 'axios';
 
-export default function CategoryName() {
-  const router = useRouter();
-  const categoryName = router.query.categoryName;
+export default function CategoryName( {games} ) {
   return(
   <>
-  <p>Post: {categoryName}</p>
+  {
+    games.map((game) => (
+      <div key={game.id}>{game.title}</div>
+    ))}
   </>
   );
 }
+
+
+
+export async function getServerSideProps (context){
+
+  const categoryName = context.query.categoryName;
+  try {
+    const headers = {
+      'X-RapidAPI-Key': process.env.API_KEY,
+      'X-RapidAPI-Host': process.env.API_HOST,
+    }
+  var {data} = await axios.get(process.env.BASE_URL + `category=${categoryName}`, headers);
+  return ({
+    props: {
+      games: data
+    }
+  })
+  } catch (error) {
+    return {
+      notFound: true,
+    }
+  }
+}
+

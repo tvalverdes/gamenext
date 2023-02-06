@@ -1,8 +1,8 @@
 
-export function Button({ text }){
+export function Button({ text, link }){
   return(
     <div className="flex items-center justify-center w-auto my-10">
-    <button className="bg-neutral-900 hover:bg-neutral-700 w-96 h-11 mx-5 text-white font-bold py-2 px-4 rounded"> {text} </button>
+    <a href={link} className="select-none bg-neutral-900 hover:bg-neutral-700 w-96 h-11 mx-5 text-white text-center font-bold py-2 px-4 rounded"> {text} </a>
     </div>
   );
 }

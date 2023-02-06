@@ -2,8 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { use, useState } from "react";
 import Head from 'next/head';
+import { useRouter } from "next/router";
 
 export function Navbar({ title, description }) {
+  const {asPath} = useRouter();
+  console.log(asPath);
   const [navbar, setNavbar] = useState(false);
   return (
     <>
@@ -48,25 +51,25 @@ export function Navbar({ title, description }) {
                 navbar ? 'p-12 md:p-0 block' : 'hidden'
               }`}
             >
-              <ul className="h-screen md:h-auto items-center justify-start md:flex">
-                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2  md:pr-10 text-center md:hover:text-purple-600 md:hover:bg-transparent">
-                  <Link href="#about" onClick={() => setNavbar(!navbar)}>
-                    About
+              <ul className="h-screen md:h-auto text-center items-center justify-start md:flex">
+                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2  md:pr-10  md:hover:bg-transparent">
+                  <Link href="/" className={asPath === "/" ? "text-purple-600" : "hover:text-purple-600"} onClick={() => setNavbar(!navbar)}>
+                    Home
                   </Link>
                 </li>
-                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10 text-center  md:hover:text-purple-600 md:hover:bg-transparent">
-                  <Link href="#blog" onClick={() => setNavbar(!navbar)}>
-                    Blogs
+                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10  md:hover:bg-transparent">
+                  <Link href="/categories" className={asPath === "/categories" ? "text-purple-600" : "hover:text-purple-600"} onClick={() => setNavbar(!navbar)}>
+                    Categories
                   </Link>
                 </li>
-                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10 text-center  md:hover:text-purple-600 md:hover:bg-transparent">
-                  <Link href="#contact" onClick={() => setNavbar(!navbar)}>
+                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10  md:hover:bg-transparent">
+                  <Link href="/contact" className={asPath === "/contact" ? "text-purple-600" : "hover:text-purple-600"} onClick={() => setNavbar(!navbar)}>
                     Contact
                   </Link>
                 </li>
-                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10 text-center   md:hover:text-purple-600 md:hover:bg-transparent">
-                  <Link href="#projects" onClick={() => setNavbar(!navbar)}>
-                    Projects
+                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10   md:hover:bg-transparent">
+                  <Link href="/games" className={asPath === "/games" ? "text-purple-600" : "hover:text-purple-600"} onClick={() => setNavbar(!navbar)}>
+                    Games
                   </Link>
                 </li>
               </ul>
