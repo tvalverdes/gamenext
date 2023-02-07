@@ -1,4 +1,4 @@
-import { GameCard } from "@/components/gameCard";
+
 import { Navbar } from "@/components/navbar";
 
 
@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 export default function Contact () {
   return(
   <>
-  <Navbar />
+  <Navbar title="Contact" description="Contact page of GameNext"/>
   
 
   </>

@@ -3,10 +3,12 @@ import { GameCard } from "@/components/gameCard";
 import axios from "axios";
 import { Navbar } from "@/components/navbar";
 
+
+
 export default function CategoryName({ games }) {
   return (
     <>
-      <Navbar />
+      <Navbar title={games[0].genre} description={games[0].genre + "Category"}/>
       <div className="w-full py-5 flex items-center justify-center">
         <div className="w-3/4">
           <div className="w-full grid justify-items-center grid-cols-1 gap-5 md:gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
@@ -27,9 +29,8 @@ export default function CategoryName({ games }) {
 }
 
 export async function getServerSideProps(context) {
-  const categoryName = context.query.categoryName;
-
   try {
+    const categoryName = context.query.categoryName;
     const res = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
       params: { category: categoryName },
       headers: {

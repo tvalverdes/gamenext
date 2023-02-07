@@ -11,9 +11,6 @@ export function GameCard({ img, category, alt, sendTo, name }) {
           <div className="absolute w-full h-1/3 left-[10%] top-[10%]">
             <AiFillWindows className="text-white "/>
           </div>
-          <div className="absolute w-full h-1/3 left-[20%] top-[10%]">
-            <GiMachineGunMagazine className="text-white"/>
-          </div>
           <div className="flex w-full h-3/4 items-end justify-center ">
         <h3 className="text-white select-none">{name}</h3>
           </div>

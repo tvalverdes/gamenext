@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar title="Home" description="Home Page of GameNext"/>
       <Slider />
       <h1 className='text-center text-4xl text-neutral-900 py-7'>Look up for your favorite categories</h1>
       <div className='w-full flex items-center justify-center'>

@@ -5,7 +5,7 @@ import { categories } from "@/global";
 export default function Categories() {
   return (
     <>
-      <Navbar />
+      <Navbar title="Categories" description="Categories Page of GameNext"/>
       <div className="w-full flex justify-center items-center my-10">
         <h1 className="text-2xl">Showing all Categories</h1>
       </div>
