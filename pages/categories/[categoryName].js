@@ -20,11 +20,11 @@ export async function getServerSideProps (context){
   const categoryName = context.query.categoryName;
 
   try {
-    const res = await axios.get("https://free-to-play-games-database.p.rapidapi.com/api/games", {
+    const res = await axios.get(process.env.BASE_URL, {
       params: {category: categoryName},
       headers: {
-        'X-RapidAPI-Key': 'ce05883f43mshaf479100dd336ddp1cfe63jsna553dcf6e95c',
-        'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
+        'X-RapidAPI-Key': process.env.API_KEY,
+        'X-RapidAPI-Host': process.env.API_HOST
       }
     });
     return ({
