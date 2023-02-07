@@ -20,11 +20,11 @@ export async function getServerSideProps (context){
   const categoryName = context.query.categoryName;
 
   try {
-    const res = await axios.get(process.env.BASE_URL, {
+    const res = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
       params: {category: categoryName},
       headers: {
-        'X-RapidAPI-Key': process.env.API_KEY,
-        'X-RapidAPI-Host': process.env.API_HOST
+        'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
+        'X-RapidAPI-Host': process.env.NEXT_PUBLIC_API_HOST
       }
     });
     return ({
