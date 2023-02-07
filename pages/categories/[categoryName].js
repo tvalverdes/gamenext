@@ -1,45 +1,55 @@
-import { useRouter } from 'next/router'
-import axios from 'axios';
+import { useRouter } from "next/router";
+import { GameCard } from "@/components/gameCard";
+import axios from "axios";
+import { Navbar } from "@/components/navbar";
 
-export default function CategoryName( {games} ) {
-  return(
-  <>
-  {
-    games.map((game) => (
-      <div key={game.id}>{game.title}</div>
-    ))
-    }
-  </>
+export default function CategoryName({ games }) {
+  return (
+    <>
+      <Navbar />
+      <div className="w-full py-5 flex items-center justify-center">
+        <div className="w-3/4">
+          <div className="w-full grid justify-items-center grid-cols-1 gap-5 md:gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+            {games.map((game) => (
+              <div key={game.id}>
+                <GameCard
+                  img={game.thumbnail}
+                  alt={game.title}
+                  name={game.title}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
-
-
-export async function getServerSideProps (context){
-  
+export async function getServerSideProps(context) {
   const categoryName = context.query.categoryName;
 
   try {
     const res = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
-      params: {category: categoryName},
+      params: { category: categoryName },
       headers: {
-        'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-        'X-RapidAPI-Host': process.env.NEXT_PUBLIC_API_HOST
-      }
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY,
+        "X-RapidAPI-Host": process.env.NEXT_PUBLIC_API_HOST,
+      },
     });
-    return ({
+    return {
       props: {
-        games: res.data
-      }
-    })
+        games: res.data,
+      },
+    };
   } catch (error) {
     return {
       notFound: true,
-    }
+    };
   }
 
   console.log(res);
- /*  const options = {
+  /*  const options = {
     method: 'GET',
     url: 'https://free-to-play-games-database.p.rapidapi.com/api/games',
     params: {category: "shooter"},
@@ -62,7 +72,7 @@ export async function getServerSideProps (context){
     })
   }); */
 
- /*  try {
+  /*  try {
     const games = axios.request(options);
     console.log(games.data);
     return ({
@@ -97,4 +107,3 @@ export async function getServerSideProps (context){
     }
   } */
 }
-
