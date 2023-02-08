@@ -18,7 +18,7 @@ export const categories = [
 {"id": 196, "url":"zombie.webp", "alt": "zombie category", "category": "ZOMBIE", "sendTo": "/zombie"},
 {"id": 204, "url":"turn-based.webp", "alt": "turn-based category", "category": "TURN-BASED", "sendTo": "/turn-based"},
 {"id": 210, "url":"first-person.webp", "alt": "first-person category", "category": "FIRST-PERSON", "sendTo": "/first-person"},
-{"id": 220, "url":"third-Person.webp", "alt": "third-Person category", "category": "THIRD-PERSON", "sendTo": "/third-Person"},
+{"id": 220, "url":"third-person.webp", "alt": "third-Person category", "category": "THIRD-PERSON", "sendTo": "/third-person"},
 {"id": 222, "url":"top-down.webp", "alt": "top-down category", "category": "TOP-DOWN", "sendTo": "/top-down"},
 {"id": 229, "url":"tank.webp", "alt": "tank category", "category": "TANK", "sendTo": "/tank"},
 {"id": 239, "url":"space.webp", "alt": "space category", "category": "SPACE", "sendTo": "/space"},
