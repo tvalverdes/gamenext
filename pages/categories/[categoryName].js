@@ -18,6 +18,7 @@ export default function CategoryName({ games }) {
                   img={game.thumbnail}
                   alt={game.title}
                   name={game.title}
+                  sendTo={"/games/" + game.id}
                 />
               </div>
             ))}

@@ -17,7 +17,7 @@ export function Navbar({ title, description }) {
   </Head>
   
   
-      <nav className="w-full bg-neutral-900 top-0 left-0 right-0 z-10">
+      <nav className="w-full sticky bg-neutral-900 top-0 left-0 right-0 z-10">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div className="w-full justify-between md:w-1/3">
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
