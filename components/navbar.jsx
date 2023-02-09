@@ -66,11 +66,11 @@ export function Navbar({ title, description }) {
                     Contact
                   </Link>
                 </li>
-                <li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10   md:hover:bg-transparent">
+                {/*<li className="border-white border-b-2 pb-4 text-lg text-white md:border-none py-2 md:px-10   md:hover:bg-transparent">
                   <Link href="/games" className={asPath === "/games" ? "text-purple-600" : "hover:text-purple-600"} onClick={() => setNavbar(!navbar)}>
                     Games
                   </Link>
-                </li>
+            </li>*/}
               </ul>
             </div>
           </div>

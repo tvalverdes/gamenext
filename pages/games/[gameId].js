@@ -1,5 +1,3 @@
-import { useRouter } from "next/router";
-import { GameCard } from "@/components/gameCard";
 import axios from "axios";
 import { Navbar } from "@/components/navbar";
 import { similarGames } from "@/global";
@@ -7,6 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
+import { GoPrimitiveDot } from "react-icons/go";
+import { BsCameraFill } from "react-icons/bs";
 
 export default function GameId({ games, categories }) {
   const fullDescription = games.description;
@@ -32,12 +32,13 @@ export default function GameId({ games, categories }) {
     <>
       <Navbar title={games.title} description={games.genre + "Category"} />
       <div
-        className={`bg-slate-100  ${showMore ? "" : "sm:h-[calc(100vh-90px)]"}`}
+        className="bg-slate-100 h-full text-neutral-700"
       >
         {/* First Column */}
         <div className="w-full md:grid md:grid-cols-2">
           <div className="md:sticky top-0 py-10 w-full">
             <div className="flex flex-row justify-center px-3">
+              <div className="relative">
               <Image
                 loader={() => games.thumbnail}
                 src={games.thumbnail}
@@ -48,11 +49,17 @@ export default function GameId({ games, categories }) {
                 alt={games.title + " Image"}
                 className="rounded-md"
               />
+              <div className="absolute top-0 rounded-t-md w-full bg-slate-900 bg-opacity-25">
+              <GoPrimitiveDot className={`text-xl ${games.status.toLowerCase() == "live" ? "text-green-500" : "text-red-500"}`}/>
+              </div>
+              <p className="absolute -top-1 left-5 text-slate-100">{games.status}</p>
+              </div>
             </div>
             <Button text="Play now!" link={games.game_url} target="_blank" />
 
             <div className="flex flex-row justify-center -mt-5">
-              <h2 className="py-5 text-lg">Screenshots</h2>
+              
+              <h2 className="py-5 flex items-center justify-center gap-2 text-lg"><BsCameraFill /> Screenshots</h2>
             </div>
             <div className="flex flex-row justify-center">
               {games.screenshots.length > 0 ? (
@@ -80,7 +87,7 @@ export default function GameId({ games, categories }) {
 
           {/* Second Column */}
           <div className="w-full mt-5 px-5">
-            <h1 className="border-b-2 text-lg mb-2 border-purple-600 font-bold">
+            <h1 className="border-b-2 text-lg mb-2 text-center border-purple-600  font-bold">
               General information
             </h1>
             <div className="grid lg:grid-cols-2 border-b-2 border-purple-200">
@@ -109,7 +116,7 @@ export default function GameId({ games, categories }) {
               <b>Name:&nbsp;</b>
               {games.title}
             </div>
-            <div className="flex flex-row border-b-2 border-purple-200 mb-2 py-2">
+            <div className="flex flex-row border-b-2 text-justify border-purple-200 mb-2 py-2">
               {games.short_description}
             </div>
             <div className="flex flex-row text-justify mr-4 border-b-2 border-purple-200 py-2">
@@ -124,7 +131,7 @@ export default function GameId({ games, categories }) {
               </p>
             </div>
 
-            <h2 className="border-b-2 mb-2 border-purple-600 pt-4 font-bold text-lg">
+            <h2 className="border-b-2 mb-2 text-center border-purple-600 pt-4 font-bold text-lg">
               Minimum System Requirements:
             </h2>
             <div className="grid md:grid-cols-2 border-b-2 border-purple-200">
@@ -153,10 +160,10 @@ export default function GameId({ games, categories }) {
                 </p>
               </div>
             </div>
-            <h2 className="border-b-2 mb-2 border-purple-600 pt-4 font-bold text-lg">
+            <h2 className="border-b-2 mb-2 text-center border-purple-600 pt-4 font-bold text-lg">
               Similar Games:
             </h2>
-            <div className="flex gap-2 border-b-2 border-purple-200">
+            <div className="grid grid-cols-1 pt-2 sm:grid-cols-2 place-items-center lg:grid-cols-3 gap-3 md:gap-5 lg:gap-5 border-b-2 border-purple-200">
               {executed ? "" : similarGames(categories, 3, games.id).map((similar) => (
                 <div key={similar.id}>
                   <a href={similar.id}>
@@ -176,7 +183,7 @@ export default function GameId({ games, categories }) {
             </div>
           </div>
         </div>
-        <div className="pt-7 bg-slate-100">
+        <div className="pt-7">
           <Footer />
         </div>
       </div>
