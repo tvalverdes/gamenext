@@ -2,27 +2,38 @@ import { useRouter } from "next/router";
 import { GameCard } from "@/components/gameCard";
 import axios from "axios";
 import { Navbar } from "@/components/navbar";
+import { similarGames } from "@/global";
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 
-export default function GameId({ games }) {
+export default function GameId({ games, categories }) {
   const fullDescription = games.description;
   const description = fullDescription.slice(0, 250);
   const sysReq = games.minimum_system_requirements;
-  if (sysReq["os"] == null) {
-    const values = Object.keys(sysReq);
-    values.forEach((value) => {
-      sysReq[value] = "Unknown";
-    });
+  let sysValidate = true;
+  let executed = false
+
+  //Validate if the game has min requirements to prevent errors
+  if (sysReq != null) {
+    if (sysReq["os"] == null) {
+      const values = Object.keys(sysReq);
+      values.forEach((value) => {
+        sysReq[value] = "Unknown";
+      });
+    }
+  } else {
+    sysValidate = false;
   }
 
   const [showMore, setShowMore] = useState(false);
   return (
     <>
       <Navbar title={games.title} description={games.genre + "Category"} />
-      <main className={`bg-slate-100  ${showMore ? "" : "md:h-[calc(100vh-90px)]"}`}>
+      <div
+        className={`bg-slate-100  ${showMore ? "" : "sm:h-[calc(100vh-90px)]"}`}
+      >
         {/* First Column */}
         <div className="w-full md:grid md:grid-cols-2">
           <div className="md:sticky top-0 py-10 w-full">
@@ -39,27 +50,31 @@ export default function GameId({ games }) {
               />
             </div>
             <Button text="Play now!" link={games.game_url} target="_blank" />
-            
+
             <div className="flex flex-row justify-center -mt-5">
               <h2 className="py-5 text-lg">Screenshots</h2>
             </div>
             <div className="flex flex-row justify-center">
-              {games.screenshots.slice(0, 3).map((game) => (
-                <div key={game.id} className="px-3">
-                  <a href={game.image} target="_blank" rel="noreferrer">
-                    <Image
-                      loader={() => game.image}
-                      src={game.image}
-                      placeholder="blur"
-                      blurDataURL="/loading.svg"
-                      width={150}
-                      height={50}
-                      alt=""
-                      className="rounded-md screenshot"
-                    />
-                  </a>
-                </div>
-              ))}
+              {games.screenshots.length > 0 ? (
+                games.screenshots.slice(0, 3).map((game) => (
+                  <div key={game.id} className="px-3">
+                    <a href={game.image} target="_blank" rel="noreferrer">
+                      <Image
+                        loader={() => game.image}
+                        src={game.image}
+                        placeholder="blur"
+                        blurDataURL="/loading.svg"
+                        width={150}
+                        height={50}
+                        alt=""
+                        className="rounded-md screenshot"
+                      />
+                    </a>
+                  </div>
+                ))
+              ) : (
+                <p>Not available</p>
+              )}
             </div>
           </div>
 
@@ -70,29 +85,37 @@ export default function GameId({ games }) {
             </h1>
             <div className="grid lg:grid-cols-2 border-b-2 border-purple-200">
               <div className="flex flex-col">
-                <p className="flex flex-row pb-2"><b>Genre:&nbsp;</b>{games.genre}</p>
                 <p className="flex flex-row pb-2">
-                <b>Publisher:&nbsp;</b>{games.publisher}
+                  <b>Genre:&nbsp;</b>
+                  {games.genre}
+                </p>
+                <p className="flex flex-row pb-2">
+                  <b>Publisher:&nbsp;</b>
+                  {games.publisher}
                 </p>
               </div>
               <div className="flex flex-col">
                 <p className="flex flex-row pb-2">
-                <b>Release date:&nbsp;</b>{games.release_date}
+                  <b>Release date:&nbsp;</b>
+                  {games.release_date}
                 </p>
                 <p className="flex flex-row pb-2">
-                <b>Developer:&nbsp;</b>{games.developer}
+                  <b>Developer:&nbsp;</b>
+                  {games.developer}
                 </p>
               </div>
             </div>
             <div className="flex flex-row border-b-2 border-purple-200 py-2">
-            <b>Name:&nbsp;</b>{games.title}
+              <b>Name:&nbsp;</b>
+              {games.title}
             </div>
             <div className="flex flex-row border-b-2 border-purple-200 mb-2 py-2">
-            {games.short_description}
+              {games.short_description}
             </div>
             <div className="flex flex-row text-justify mr-4 border-b-2 border-purple-200 py-2">
               <p>
-              <b>Description:&nbsp;</b>{showMore ? fullDescription + " " : description + "... "}
+                <b>Description:&nbsp;</b>
+                {showMore ? fullDescription + " " : description + "... "}
                 <button onClick={() => setShowMore(!showMore)}>
                   <p className="underline text-purple-600 decoration-1 underline-offset-2">
                     {showMore ? "Show more" : "Show less"}
@@ -100,31 +123,62 @@ export default function GameId({ games }) {
                 </button>
               </p>
             </div>
+
             <h2 className="border-b-2 mb-2 border-purple-600 pt-4 font-bold text-lg">
               Minimum System Requirements:
             </h2>
             <div className="grid md:grid-cols-2 border-b-2 border-purple-200">
               <div className="flex flex-col pr-4">
-                <p className="flex flex-row pb-2"><b>OS:&nbsp;</b>{sysReq.os}</p>
                 <p className="flex flex-row pb-2">
-                <b>Processor:&nbsp;</b>{sysReq.processor}
+                  <b>OS:&nbsp;</b>
+                  {sysValidate ? sysReq.os : "Not specified"}
                 </p>
                 <p className="flex flex-row pb-2">
-                <b>Storage:&nbsp;</b>{sysReq.storage}
+                  <b>Processor:&nbsp;</b>
+                  {sysValidate ? sysReq.processor : "Not specified"}
+                </p>
+                <p className="flex flex-row pb-2">
+                  <b>Storage:&nbsp;</b>
+                  {sysValidate ? sysReq.storage : "Not specified"}
                 </p>
               </div>
               <div className="flex flex-col">
-                <p className="flex flex-row pb-2"><b>Memory:&nbsp;</b>{sysReq.memory}</p>
                 <p className="flex flex-row pb-2">
-                <b>Graphics:&nbsp;</b>{sysReq.graphics}
+                  <b>Memory:&nbsp;</b>
+                  {sysValidate ? sysReq.memory : "Not specified"}
+                </p>
+                <p className="flex flex-row pb-2">
+                  <b>Graphics:&nbsp;</b>
+                  {sysValidate ? sysReq.graphics : "Not specified"}
                 </p>
               </div>
             </div>
+            <h2 className="border-b-2 mb-2 border-purple-600 pt-4 font-bold text-lg">
+              Similar Games:
+            </h2>
+            <div className="flex gap-2 border-b-2 border-purple-200">
+              {executed ? "" : similarGames(categories, 3, games.id).map((similar) => (
+                <div key={similar.id}>
+                  <a href={similar.id}>
+                    <Image
+                      loader={() => similar.thumbnail}
+                      src={similar.thumbnail}
+                      width={300}
+                      height={150}
+                      alt=""
+                      placeholder="blur"
+                      blurDataURL="/loading.svg"
+                      className="rounded-md screenshot"
+                    />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </main>
-      <div className="pt-7 bg-slate-100">
-      <Footer />
+        <div className="pt-7 bg-slate-100">
+          <Footer />
+        </div>
       </div>
     </>
   );
@@ -143,9 +197,19 @@ export async function getServerSideProps(context) {
         },
       }
     );
+
+    //Adding '-' because API GET allows only that, but specific game data is separated
+    const resCategory = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
+      params: { category: res.data.genre.replace(/\s+/g, '-').toLowerCase() },
+      headers: {
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY,
+        "X-RapidAPI-Host": process.env.NEXT_PUBLIC_API_HOST,
+      },
+    });
     return {
       props: {
         games: res.data,
+        categories: resCategory.data,
       },
     };
   } catch (error) {

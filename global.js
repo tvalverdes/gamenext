@@ -1,3 +1,5 @@
+import axios from "axios";
+
 
 //API restrictions, needed to create the array
 export const categories = [
@@ -48,3 +50,35 @@ export const categories = [
 {"id": 370, "url":"mmorts.webp", "alt": "mmorts category", "category": "MMORTS", "sendTo": "/mmorts"},
 
 ];
+
+export const filterCategory = async (genre) => {
+  try {
+    const res = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
+      params: { platform: 'pc' , category: genre },
+      headers: {
+        "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY,
+        "X-RapidAPI-Host": process.env.NEXT_PUBLIC_API_HOST,
+      },
+    });
+    return {
+      props: {
+        games: res.data,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
+  
+}
+
+export const similarGames = (arr, num, id) => {
+  const arrayIndex = arr.findIndex((arr) => arr.id === id);
+  if (arrayIndex > -1) {
+    arr.splice(arrayIndex, 1);
+  }
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num);
+}
+//context.query.categoryName;

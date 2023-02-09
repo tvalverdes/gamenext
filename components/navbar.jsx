@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 
 export function Navbar({ title, description }) {
   const {asPath} = useRouter();
-  console.log(asPath);
   const [navbar, setNavbar] = useState(false);
   return (
     <>
