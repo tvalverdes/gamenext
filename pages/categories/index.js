@@ -21,7 +21,7 @@ export default function Categories() {
       </div>
       <div className="w-full flex items-center justify-center">
         <div className="w-3/4">
-          <div className="w-full pb-5 grid justify-items-center grid-cols-1 gap-5 md:gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="w-full pb-5 grid justify-items-center grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {categories.slice(0, next).map((category) => (
               <div key={category.id}>
                 

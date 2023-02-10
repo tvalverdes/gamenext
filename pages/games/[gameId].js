@@ -212,6 +212,9 @@ export async function getServerSideProps(context) {
     if (res.data.genre=="Card Game") {
       res.data.genre = "Card";
     }
+    else if (res.data.genre== "ARPG" || res.data.genre== "MMOARPG"){
+      res.data.genre = "mmorpg";
+    }
 
     //Adding '-' because API GET allows only that, but specific game data is separated
     const resCategory = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
