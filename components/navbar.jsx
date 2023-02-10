@@ -13,6 +13,7 @@ export function Navbar({ title, description }) {
   
   const validateSeachedGame = () =>{    
   let textSearched = document.getElementById("search").value.trim().toLowerCase();  
+  if (textSearched != ""){
   router.push({
     pathname: `/search/${textSearched}`,
   })
@@ -20,6 +21,7 @@ export function Navbar({ title, description }) {
     document.getElementById("closeBtn").click();
   }
 }
+  }
 
 const searchByEnter = () =>{
     const inputBtn = document.getElementById("search");
@@ -109,4 +111,5 @@ const searchByEnter = () =>{
       
   );
   
-}
+          }
+        
