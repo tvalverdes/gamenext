@@ -13,20 +13,23 @@ export function Navbar({ title, description }) {
   
   const validateSeachedGame = () =>{    
   let textSearched = document.getElementById("search").value.trim().toLowerCase();  
-  if (textSearched==0) {
-    alert("El campo no puede estar vacío")
+  router.push({
+    pathname: `/search/${textSearched}`,
+  })
+  if (document.getElementById("closeBtn") != null) {
+    document.getElementById("closeBtn").click();
   }
-   else if (textSearched.length < 3) {
-      alert("Debes buscar más de 3 caracteres");
-    }
-    else{
-      router.push({
-        pathname: `/search/${textSearched}`,
-    })
-    }
-  }
+}
 
-
+const searchByEnter = () =>{
+    const inputBtn = document.getElementById("search");
+    if (inputBtn.value != "") {
+      inputBtn.addEventListener("keyup",(e)=>{
+        if (e.key === "Enter") {
+          validateSeachedGame();
+        }}) 
+      }     
+    }
   return (
     <>
   <Head>
@@ -47,7 +50,7 @@ export function Navbar({ title, description }) {
                   onClick={() => setNavbar(!navbar)}
                 >
                   {navbar ? (
-                    <Image src="/close.svg" width={30} height={30} alt="logo" />
+                    <Image id="closeBtn" src="/close.svg" width={30} height={30} alt="logo" />
                   ) : (
                     <Image
                       src="/hamburger-menu.svg"
@@ -83,9 +86,9 @@ export function Navbar({ title, description }) {
                     Contact
                   </Link>
                 </li>
-                <li className="border-white border-b-2 pb-4 md:pb-0 text-3xl text-white md:border-none py-2 md:py-0   md:hover:bg-transparent">
+                <li className="pb-4 md:pb-0 text-3xl text-white md:border-none py-2 mt-5 md:mt-0 md:py-0   md:hover:bg-transparent">
                   <div className="relative flex justify-center items-center">
-                  <input id="search" name="search" type="text" className="rounded-lg flex-row focus:outline-purple-700 w-full text-neutral-900 text-sm md:text-lg" required/>
+                  <input id="search" name="search" onKeyDown={searchByEnter} type="text" className="rounded-lg flex-row focus:outline-purple-700 w-full text-neutral-900 pl-3 text-[22px] md:text-lg" required/>
                   <button id="searchBtn" type="submit" onClick={validateSeachedGame}>
                   <HiMagnifyingGlassCircle className="absolute text-white top-0 -right-8"/>
                   </button>
@@ -101,6 +104,9 @@ export function Navbar({ title, description }) {
           </div>
         </div>
       </nav>
+      
       </>
+      
   );
+  
 }
