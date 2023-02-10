@@ -208,6 +208,11 @@ export async function getServerSideProps(context) {
       }
     );
 
+    //API inconsistencies
+    if (res.data.genre=="Card Game") {
+      res.data.genre = "Card";
+    }
+
     //Adding '-' because API GET allows only that, but specific game data is separated
     const resCategory = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
       params: { category: res.data.genre.replace(/\s+/g, '-').toLowerCase() },
