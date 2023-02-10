@@ -5,7 +5,7 @@ import { RxDotFilled } from "react-icons/rx";
 export function Slider() {
   const slides = [
     {
-      url: "/img/ellie.webp",
+      url: "/img/shooting.webp",
       title: "Information",
       description: "Stay informed of your favorite games",
     },
@@ -44,6 +44,8 @@ export function Slider() {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
+
+  setTimeout(nextSlide, 5000);
 
   return (
     <div className="bg-neutral-900">
