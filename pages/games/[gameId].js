@@ -7,6 +7,7 @@ import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 import { GoPrimitiveDot } from "react-icons/go";
 import { BsCameraFill } from "react-icons/bs";
+import { Link } from "react-feather";
 
 export default function GameId({ games, categories }) {
   const fullDescription = games.description;
@@ -44,9 +45,9 @@ export default function GameId({ games, categories }) {
                 src={games.thumbnail}
                 placeholder="blur"
                 blurDataURL="/loading.svg"
+                alt={games.title + " Image"}
                 width={330}
                 height={330}
-                alt={games.title + " Image"}
                 className="rounded-md"
               />
               <div className="absolute top-0 rounded-t-md w-full bg-slate-900 bg-opacity-25">
@@ -94,7 +95,9 @@ export default function GameId({ games, categories }) {
               <div className="flex flex-col">
                 <p className="flex flex-row pb-2">
                   <b>Genre:&nbsp;</b>
+              <a href={"/categories/"+games.genre.replace(' ', '-').trim().toLowerCase()} className="text-purple-600 underline underline-offset-2 font-bold">
                   {games.genre}
+                  </a>
                 </p>
                 <p className="flex flex-row pb-2">
                   <b>Publisher:&nbsp;</b>
@@ -125,7 +128,7 @@ export default function GameId({ games, categories }) {
                 {showMore ? fullDescription + " " : description + "... "}
                 <button onClick={() => setShowMore(!showMore)}>
                   <p className="underline text-purple-600 decoration-1 underline-offset-2">
-                    {showMore ? "Show more" : "Show less"}
+                    {showMore ? "Show less" : "Show more"}
                   </p>
                 </button>
               </p>

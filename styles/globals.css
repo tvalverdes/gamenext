@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 
+html{
+  font-family: 'Lato', sans-serif;
+}
 /*
 h1 {
   color: white;

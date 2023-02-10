@@ -54,7 +54,7 @@ export const categories = [
 export const filterCategory = async (genre) => {
   try {
     const res = await axios.get(process.env.NEXT_PUBLIC_BASE_URL, {
-      params: { platform: 'pc' , category: genre },
+      params: { platform: 'pc' , category: genre.trim().toLowerCase() },
       headers: {
         "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY,
         "X-RapidAPI-Host": process.env.NEXT_PUBLIC_API_HOST,
