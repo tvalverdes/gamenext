@@ -107,7 +107,7 @@ export default function GameId({ games, categories }) {
               <div className="flex flex-col">
                 <p className="flex flex-row pb-2">
                   <b>Release date:&nbsp;</b>
-                  {games.release_date}
+                  {games.release_date.split('-').reverse().join('/')}
                 </p>
                 <p className="flex flex-row pb-2">
                   <b>Developer:&nbsp;</b>
@@ -212,7 +212,7 @@ export async function getServerSideProps(context) {
     if (res.data.genre=="Card Game") {
       res.data.genre = "Card";
     }
-    else if (res.data.genre== "ARPG" || res.data.genre== "MMOARPG"){
+    else if (res.data.genre== "ARPG" || res.data.genre == "MMOARPG"){
       res.data.genre = "mmorpg";
     }
 
